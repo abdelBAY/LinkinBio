@@ -26,9 +26,9 @@ export class MemStorage implements IStorage {
 
     // Create initial profile
     this.createProfile({
-      name: "John Doe",
+      name: "Abdellatif Bayejou",
       bio: "Welcome to my links page!",
-      avatarSeed: "john123",
+      avatarSeed: "abdellatif",
       theme: "light",
       background: "gradient1",
       glassEffect: true,
@@ -38,14 +38,14 @@ export class MemStorage implements IStorage {
     this.createLink({
       profileId: 1,
       title: "GitHub",
-      url: "https://github.com/johndoe",
+      url: "https://github.com/abdelBAY",
       order: 0,
     });
 
     this.createLink({
       profileId: 1,
-      title: "Twitter",
-      url: "https://twitter.com/johndoe",
+      title: "Instagram",
+      url: "https://www.instagram.com/abdellatif_bj/",
       order: 1,
     });
   }
