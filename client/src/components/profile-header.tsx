@@ -9,7 +9,7 @@ interface ProfileHeaderProps {
 
 export function ProfileHeader({ profile }: ProfileHeaderProps) {
   // Using the custom avatar image
-  const avatarUrl = "/WhatsApp Image 2025-02-07 à 19.44.21_9d773911.jpg";
+  const avatarUrl = "/assets/WhatsApp Image 2025-02-07 à 19.44.21_9d773911.jpg";
 
   return (
     <motion.div
