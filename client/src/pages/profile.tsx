@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { getPlatformName } from "@/lib/platform-icons";
+import { useLocation } from "wouter";
 import {
   Form,
   FormControl,
@@ -30,17 +31,30 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { ProfileHeader } from "@/components/profile-header";
 import { LinkList } from "@/components/link-list";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, ArrowLeft } from "lucide-react";
 import { ThemeRecommendationCard } from "@/components/theme-recommendation";
 
 const DEMO_PROFILE_ID = 1;
 
 function ProfilePage() {
   const { toast } = useToast();
+  const [, navigate] = useLocation();
 
-  const { data: profile } = useQuery<Profile>({
+  const { data: profile, isLoading, isError } = useQuery<Profile>({
     queryKey: [`/api/profiles/${DEMO_PROFILE_ID}`],
   });
+
+  // If not loading and either no profile or error, redirect to home
+  useEffect(() => {
+    if (!isLoading && (!profile || isError)) {
+      toast({
+        variant: "destructive",
+        title: "Access Denied",
+        description: "You don't have permission to access this page.",
+      });
+      navigate("/");
+    }
+  }, [isLoading, isError, profile]);
 
   const { data: links = [] } = useQuery<Link[]>({
     queryKey: [`/api/profiles/${DEMO_PROFILE_ID}/links`],
@@ -117,9 +131,11 @@ function ProfilePage() {
     },
   });
 
-  if (!profile) {
+  if (isLoading) {
     return <Skeleton className="w-full h-96" />;
   }
+
+  if (!profile) return null;
 
   const backgrounds = [
     { value: "gradient1", label: "Purple Dream" },
@@ -131,6 +147,18 @@ function ProfilePage() {
   return (
     <div className="min-h-screen p-4 bg-background">
       <div className="max-w-2xl mx-auto space-y-8">
+        <div className="flex items-center gap-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => navigate("/")}
+            className="shrink-0"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+          <h1 className="text-2xl font-bold">Profile Settings</h1>
+        </div>
+
         <ProfileHeader profile={profile} />
 
         <Card>
