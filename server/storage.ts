@@ -48,6 +48,13 @@ export class MemStorage implements IStorage {
       url: "https://www.instagram.com/abdellatif_bj/",
       order: 1,
     });
+
+    this.createLink({
+      profileId: 1,
+      title: "LinkedIn",
+      url: "https://www.linkedin.com/in/abdellatif-bayejou-337770233",
+      order: 2,
+    });
   }
 
   async getProfile(id: number): Promise<Profile | undefined> {
@@ -79,7 +86,7 @@ export class MemStorage implements IStorage {
 
   async getLinks(profileId: number): Promise<Link[]> {
     return Array.from(this.links.values())
-      .filter(link => link.profileId === profileId)
+      .filter((link) => link.profileId === profileId)
       .sort((a, b) => a.order - b.order);
   }
 
