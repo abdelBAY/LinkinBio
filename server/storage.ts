@@ -32,6 +32,8 @@ export class MemStorage implements IStorage {
       theme: "light",
       background: "gradient1",
       glassEffect: true,
+      mediaUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      mediaType: "youtube"
     });
 
     // Create some initial links
@@ -71,6 +73,8 @@ export class MemStorage implements IStorage {
       theme: profile.theme ?? "light",
       background: profile.background ?? "gradient1",
       glassEffect: profile.glassEffect ?? true,
+      mediaUrl: profile.mediaUrl ?? null,
+      mediaType: profile.mediaType ?? null,
     };
     this.profiles.set(id, newProfile);
     return newProfile;

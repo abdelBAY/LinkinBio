@@ -10,6 +10,8 @@ export const profiles = pgTable("profiles", {
   theme: text("theme").notNull().default("light"),
   background: text("background").notNull().default("gradient1"),
   glassEffect: boolean("glass_effect").notNull().default(true),
+  mediaUrl: text("media_url"),
+  mediaType: text("media_type"), // 'spotify' or 'youtube'
 });
 
 export const links = pgTable("links", {

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { ProfileHeader } from "@/components/profile-header";
 import { LinkList } from "@/components/link-list";
+import { MediaWidget } from "@/components/media-widget";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
@@ -40,6 +41,9 @@ export default function Home() {
 
       <div className="max-w-2xl mx-auto pt-8">
         <ProfileHeader profile={profile} />
+        {profile.mediaUrl && profile.mediaType && (
+          <MediaWidget url={profile.mediaUrl} type={profile.mediaType as "spotify" | "youtube"} />
+        )}
         <LinkList links={links} profileId={profile.id} />
       </div>
     </div>
