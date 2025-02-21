@@ -25,14 +25,24 @@ export function LinkCard({ link }: LinkCardProps) {
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      transition={{ duration: 0.2 }}
+      transition={{ 
+        duration: 0.2,
+        type: "spring",
+        stiffness: 300,
+        damping: 20
+      }}
     >
       <Card 
         onClick={handleClick}
-        className="cursor-pointer hover:shadow-lg transition-shadow backdrop-blur-lg bg-white/50 dark:bg-black/50"
+        className="cursor-pointer hover:shadow-lg transition-shadow backdrop-blur-lg bg-white/50 dark:bg-black/50 border border-transparent hover:border-primary/20"
       >
         <CardContent className="p-4 flex items-center gap-3">
-          <Icon className="w-6 h-6" />
+          <motion.div
+            whileHover={{ rotate: 5 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Icon className="w-6 h-6" />
+          </motion.div>
           <div className="flex-1">
             <h3 className="font-medium">{link.title}</h3>
             <p className="text-sm text-muted-foreground">
