@@ -11,7 +11,9 @@ export const profiles = pgTable("profiles", {
   background: text("background").notNull().default("gradient1"),
   glassEffect: boolean("glass_effect").notNull().default(true),
   mediaUrl: text("media_url"),
-  mediaType: text("media_type"), // 'spotify' or 'youtube'
+  mediaType: text("media_type"),
+  themePreferences: jsonb("theme_preferences").default(['professional', 'modern']).notNull(),
+  lastThemeUpdate: text("last_theme_update"),
 });
 
 export const links = pgTable("links", {
@@ -31,3 +33,14 @@ export type Profile = typeof profiles.$inferSelect;
 export type InsertProfile = z.infer<typeof insertProfileSchema>;
 export type Link = typeof links.$inferSelect;
 export type InsertLink = z.infer<typeof insertLinkSchema>;
+
+// Theme types
+export type ThemeStyle = 'professional' | 'modern' | 'playful' | 'minimal' | 'bold';
+export type ThemeColor = 'blue' | 'purple' | 'green' | 'orange' | 'pink';
+
+export interface ThemeRecommendation {
+  style: ThemeStyle;
+  color: ThemeColor;
+  background: string;
+  glassEffect: boolean;
+}

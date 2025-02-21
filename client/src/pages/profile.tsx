@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { getPlatformName } from "@/lib/platform-icons";
-
 import {
   Form,
   FormControl,
@@ -32,6 +31,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ProfileHeader } from "@/components/profile-header";
 import { LinkList } from "@/components/link-list";
 import { Plus, Trash2 } from "lucide-react";
+import { ThemeRecommendationCard } from "@/components/theme-recommendation";
 
 const DEMO_PROFILE_ID = 1;
 
@@ -230,6 +230,8 @@ export default function Profile() {
             </Form>
           </CardContent>
         </Card>
+
+        <ThemeRecommendationCard profile={profile} />
 
         <Card>
           <CardHeader>
