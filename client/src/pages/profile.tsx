@@ -2,7 +2,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Profile, Link, insertProfileSchema, insertLinkSchema } from "@shared/schema";
+import type { Profile, Link, InsertLink } from "@shared/schema";
 import { motion, AnimatePresence } from "framer-motion";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -35,7 +35,7 @@ import { ThemeRecommendationCard } from "@/components/theme-recommendation";
 
 const DEMO_PROFILE_ID = 1;
 
-export default function Profile() {
+function ProfilePage() {
   const { toast } = useToast();
 
   const { data: profile } = useQuery<Profile>({
@@ -47,7 +47,6 @@ export default function Profile() {
   });
 
   const profileForm = useForm({
-    resolver: zodResolver(insertProfileSchema),
     defaultValues: {
       name: "",
       bio: "",
@@ -55,15 +54,16 @@ export default function Profile() {
       theme: "light",
       background: "gradient1",
       glassEffect: true,
+      themePreferences: ['professional', 'modern'],
     },
   });
 
   const linkForm = useForm({
-    resolver: zodResolver(insertLinkSchema),
     defaultValues: {
       profileId: DEMO_PROFILE_ID,
       title: "",
       url: "",
+      platform: "",
       order: 0,
     },
   });
@@ -319,4 +319,4 @@ export default function Profile() {
   );
 }
 
-type InsertLink = Omit<Link, 'id' | 'createdAt' | 'updatedAt' | 'profileId'>;
+export default ProfilePage;

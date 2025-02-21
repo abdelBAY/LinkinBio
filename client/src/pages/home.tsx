@@ -3,14 +3,16 @@ import { ProfileHeader } from "@/components/profile-header";
 import { LinkList } from "@/components/link-list";
 import { MediaWidget } from "@/components/media-widget";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Settings } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
 import { Profile, Link } from "@shared/schema";
+import { useLocation } from "wouter";
 
 const DEMO_PROFILE_ID = 1;
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
+  const [, navigate] = useLocation();
 
   const { data: profile } = useQuery<Profile>({
     queryKey: [`/api/profiles/${DEMO_PROFILE_ID}`],
@@ -30,14 +32,22 @@ export default function Home() {
 
   return (
     <div className="min-h-screen p-4" style={gradientStyles}>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="fixed top-4 right-4"
-        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      >
-        {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-      </Button>
+      <div className="fixed top-4 right-4 flex gap-2">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => navigate("/profile")}
+        >
+          <Settings className="h-5 w-5" />
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+        >
+          {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+        </Button>
+      </div>
 
       <div className="max-w-2xl mx-auto pt-8">
         <ProfileHeader profile={profile} />
