@@ -22,13 +22,9 @@
   - Track profile views, link clicks, and referral sources.  
   - Visualize trends with daily/weekly/monthly charts.  
 
-### **Enhanced Features**  
-- **Monetization & Integration**  
-  - Stripe/PayPal donations, "Buy Me a Coffee" support.  
-  - Mailchimp newsletter forms + Google Drive backups.  
+### **Enhanced Features**   
 - **Customization**  
-  - 10+ themes (dark/light/retro), custom CSS/HTML.  
-  - Font selector (Google Fonts) + QR code generator.  
+  - 10+ themes (dark/light/retro), custom CSS/HTML.   
 - **Enterprise-Grade**  
   - Custom domains, SEO optimization, SSL auto-provisioning.  
 
