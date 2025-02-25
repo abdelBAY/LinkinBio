@@ -58,6 +58,13 @@ export class MemStorage implements IStorage {
       url: "https://www.linkedin.com/in/abdellatif-bayejou-337770233",
       order: 2,
     });
+
+    this.createLink({
+      profileId: 1,
+      title: "Facebook",
+      url: "https://web.facebook.com/red.moon.161/",
+      order: 3,
+    });
   }
 
   async getProfile(id: number): Promise<Profile | undefined> {
