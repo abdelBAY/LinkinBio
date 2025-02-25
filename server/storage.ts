@@ -26,7 +26,7 @@ export class MemStorage implements IStorage {
 
     // Create initial profile
     this.createProfile({
-      name: "Abdellatif Bayejou",
+      name: "Abdellatif Bayejou (ⵄⴰⴱⴷⵍⵟⵉⴼ ⴱⴰⵢⵊⵓ)",
       bio: "Welcome to my links page!",
       avatarSeed: "abdellatif",
       theme: "light",
@@ -34,7 +34,7 @@ export class MemStorage implements IStorage {
       glassEffect: true,
       mediaUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       mediaType: "youtube",
-      themePreferences: ['professional', 'modern'],
+      themePreferences: ["professional", "modern"],
     });
 
     // Create some initial links
@@ -76,7 +76,7 @@ export class MemStorage implements IStorage {
       glassEffect: profile.glassEffect ?? true,
       mediaUrl: profile.mediaUrl ?? null,
       mediaType: profile.mediaType ?? null,
-      themePreferences: profile.themePreferences ?? ['professional', 'modern'],
+      themePreferences: profile.themePreferences ?? ["professional", "modern"],
       lastThemeUpdate: null,
     };
     this.profiles.set(id, newProfile);
