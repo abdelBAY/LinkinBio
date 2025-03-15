@@ -2,6 +2,7 @@ import { Express, Request, Response } from "express";
 import { createServer } from "http";
 import { storage } from "./storage";
 import { insertProfileSchema, insertLinkSchema } from "@shared/schema";
+import { requireAdmin } from "./middleware";
 
 export async function registerRoutes(app: Express) {
   app.get("/api/profiles/:id", async (req: Request, res: Response) => {
@@ -17,9 +18,7 @@ export async function registerRoutes(app: Express) {
     res.json(profile);
   });
 
-  import { requireAdmin } from "./middleware";
-
-app.patch("/api/profiles/:id", requireAdmin, async (req: Request, res: Response) => {
+  app.patch("/api/profiles/:id", requireAdmin, async (req: Request, res: Response) => {
     const profile = await storage.updateProfile(parseInt(req.params.id), req.body);
     res.json(profile);
   });
