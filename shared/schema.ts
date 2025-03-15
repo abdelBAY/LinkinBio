@@ -6,6 +6,7 @@ export const profiles = pgTable("profiles", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   bio: text("bio"),
+  isAdmin: boolean("is_admin").notNull().default(false),
   avatarSeed: text("avatar_seed").notNull(),
   theme: text("theme").notNull().default("light"),
   background: text("background").notNull().default("gradient1"),

@@ -46,7 +46,7 @@ function ProfilePage() {
 
   // If not loading and either no profile or error, redirect to home
   useEffect(() => {
-    if (!isLoading && (!profile || isError)) {
+    if (!isLoading && (!profile || isError || !profile.isAdmin)) {
       toast({
         variant: "destructive",
         title: "Access Denied",

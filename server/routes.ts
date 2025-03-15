@@ -17,7 +17,9 @@ export async function registerRoutes(app: Express) {
     res.json(profile);
   });
 
-  app.patch("/api/profiles/:id", async (req: Request, res: Response) => {
+  import { requireAdmin } from "./middleware";
+
+app.patch("/api/profiles/:id", requireAdmin, async (req: Request, res: Response) => {
     const profile = await storage.updateProfile(parseInt(req.params.id), req.body);
     res.json(profile);
   });
