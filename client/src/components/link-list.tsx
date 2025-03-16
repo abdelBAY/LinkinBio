@@ -27,7 +27,7 @@ export function LinkList({ links, profileId }: LinkListProps) {
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
-      <Droppable droppableId="links">
+      <Droppable droppableId="links" mode="vertical" type="DEFAULT">
         {(provided) => (
           <div
             {...provided.droppableProps}
